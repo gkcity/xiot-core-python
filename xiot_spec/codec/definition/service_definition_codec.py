@@ -4,7 +4,6 @@ from xiot_spec.codec.definition.description_codec import DescriptionCodec
 from xiot_spec.codec.definition.type.action_type_codec import ActionTypeCodec
 from xiot_spec.codec.definition.type.event_type_codec import EventTypeCodec
 from xiot_spec.codec.definition.type.property_type_codec import PropertyTypeCodec
-from xiot_spec.codec.java.json_object import JsonObject
 from xiot_spec.typedef.constant.spec import Spec
 from xiot_spec.typedef.definition.service_definition import ServiceDefinition
 from xiot_spec.typedef.definition.urn.service_type import ServiceType

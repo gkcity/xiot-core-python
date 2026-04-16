@@ -2,7 +2,6 @@ from typing import Dict, Any
 
 from xiot_spec.codec.definition.argument_definition_codec import ArgumentDefinitionCodec
 from xiot_spec.codec.definition.description_codec import DescriptionCodec
-from xiot_spec.codec.java.json_array import JsonArray
 from xiot_spec.typedef.constant.spec import Spec
 from xiot_spec.typedef.definition.event_definition import EventDefinition
 from xiot_spec.typedef.definition.urn.event_type import EventType
@@ -19,7 +18,7 @@ class EventDefinitionCodec:
         desc = DescriptionCodec.decode(obj.get(Spec.DESCRIPTION))
 
         array = obj.get(Spec.ARGUMENTS, [])
-        args = ArgumentDefinitionCodec.decode(JsonArray(array))
+        args = ArgumentDefinitionCodec.decode(array)
 
         return EventDefinition(type_, desc, args)
 

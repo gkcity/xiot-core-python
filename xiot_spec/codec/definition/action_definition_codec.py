@@ -2,7 +2,6 @@ from typing import Dict, Any
 
 from xiot_spec.codec.definition.argument_definition_codec import ArgumentDefinitionCodec
 from xiot_spec.codec.definition.description_codec import DescriptionCodec
-from xiot_spec.codec.java.json_array import JsonArray
 from xiot_spec.typedef.constant.spec import Spec
 from xiot_spec.typedef.definition.action_definition import ActionDefinition
 from xiot_spec.typedef.definition.urn.action_type import ActionType
@@ -21,10 +20,10 @@ class ActionDefinitionCodec:
 
         in_array = obj.get(Spec.IN, [])
 
-        in_args = ArgumentDefinitionCodec.decode(JsonArray(in_array))
+        in_args = ArgumentDefinitionCodec.decode(in_array)
 
         out_array = obj.get(Spec.OUT, [])
-        out_args = ArgumentDefinitionCodec.decode(JsonArray(out_array))
+        out_args = ArgumentDefinitionCodec.decode(out_array)
 
         return ActionDefinition(type_, desc, in_args, out_args)
 

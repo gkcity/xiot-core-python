@@ -1,7 +1,5 @@
-from typing import Optional, Union
+from typing import Optional
 
-from xiot_spec.codec.java.json_array import JsonArray
-from xiot_spec.codec.java.json_object import JsonObject
 from xiot_spec.typedef.constant.spec import Spec
 from xiot_spec.typedef.definition.argument_definition import ArgumentDefinition
 from xiot_spec.typedef.definition.urn.property_type import PropertyType
@@ -9,7 +7,7 @@ from xiot_spec.typedef.definition.urn.property_type import PropertyType
 
 class ArgumentDefinitionCodec:
     @staticmethod
-    def decode(array: JsonArray) -> list[ArgumentDefinition]:
+    def decode(array: list[dict]) -> list[ArgumentDefinition]:
         list_: list[ArgumentDefinition] = []
         if array is None:
             return list_
@@ -20,7 +18,7 @@ class ArgumentDefinitionCodec:
                 if arg:
                     list_.append(arg)
             elif isinstance(obj, dict):
-                arg = ArgumentDefinitionCodec.decode_dict(JsonObject(obj))
+                arg = ArgumentDefinitionCodec.decode_dict(obj)
                 if arg:
                     list_.append(arg)
         return list_
@@ -30,19 +28,19 @@ class ArgumentDefinitionCodec:
         return ArgumentDefinition(PropertyType.parse(type_str), 1, 1)
 
     @staticmethod
-    def decode_dict(obj: JsonObject) -> Optional[ArgumentDefinition]:
-        type_str = obj.opt_string(Spec.PROPERTY, "")
+    def decode_dict(obj: dict) -> Optional[ArgumentDefinition]:
+        type_str = obj.get(Spec.PROPERTY, "")
         type_ = PropertyType.parse(type_str)
-        repeat: JsonArray | None = obj.get_json_array(Spec.REPEAT)
+        repeat: list[int] | None = obj.get(Spec.REPEAT)
 
         if repeat is None:
             return None
 
-        if repeat.size() != 2:
+        if len(repeat) != 2:
             return None
 
-        min_rep = repeat.get(0)
-        max_rep = repeat.get(1)
+        min_rep = repeat[0]
+        max_rep = repeat[1]
         if not isinstance(min_rep, int) or not isinstance(max_rep, int):
             return None
 

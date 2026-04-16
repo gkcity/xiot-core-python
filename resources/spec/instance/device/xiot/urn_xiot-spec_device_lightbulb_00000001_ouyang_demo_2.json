@@ -1,0 +1,325 @@
+{
+  "type": "urn:xiot-spec:device:lightbulb:00000001:ouyang:demo:2",
+  "description": {
+    "en-US": "lightbulb",
+    "zh-TW": "灯",
+    "zh-CN": "灯"
+  },
+  "services": [
+    {
+      "iid": 1,
+      "type": "urn:xiot-spec:service:device-information:00000002:ouyang:demo:1",
+      "description": {
+        "en-US": "Device Information",
+        "zh-TW": "設備信息",
+        "zh-CN": "设备信息"
+      },
+      "properties": [
+        {
+          "iid": 1,
+          "type": "urn:xiot-spec:property:firmware-revision:00000006:ouyang:demo:1",
+          "description": {
+            "en-US": "Firmware Revision",
+            "zh-TW": "固件版本",
+            "zh-CN": "固件版本"
+          },
+          "format": "string",
+          "access": [
+            "read"
+          ]
+        },
+        {
+          "iid": 2,
+          "type": "urn:xiot-spec:property:manufacturer:00000003:ouyang:demo:1",
+          "description": {
+            "en-US": "Manufacturer",
+            "zh-TW": "製造商",
+            "zh-CN": "制造商"
+          },
+          "format": "string",
+          "access": [
+            "read"
+          ]
+        },
+        {
+          "iid": 3,
+          "type": "urn:xiot-spec:property:model:00000004:ouyang:demo:1",
+          "description": {
+            "en-US": "Model",
+            "zh-TW": "型號",
+            "zh-CN": "型号"
+          },
+          "format": "string",
+          "access": [
+            "read"
+          ]
+        },
+        {
+          "iid": 4,
+          "type": "urn:xiot-spec:property:serial-number:00000005:ouyang:demo:1",
+          "description": {
+            "en-US": "Serial Number",
+            "zh-TW": "序列號",
+            "zh-CN": "序列号"
+          },
+          "format": "string",
+          "access": [
+            "read"
+          ]
+        },
+        {
+          "iid": 5,
+          "type": "urn:xiot-spec:property:software-revision:0000001f:ouyang:demo:1",
+          "description": {
+            "en-US": "Software revision",
+            "zh-TW": "軟件版本",
+            "zh-CN": "软件版本"
+          },
+          "format": "string",
+          "access": [
+            "read"
+          ]
+        },
+        {
+          "iid": 6,
+          "type": "urn:xiot-spec:property:name:00000020:ouyang:demo:1",
+          "description": {
+            "en-US": "Name",
+            "zh-TW": "名称",
+            "zh-CN": "名称"
+          },
+          "format": "string",
+          "access": [
+            "read",
+            "write",
+            "notify"
+          ]
+        }
+      ]
+    },
+    {
+      "iid": 2,
+      "type": "urn:xiot-spec:service:lightbulb:00000005:ouyang:demo:1",
+      "description": {
+        "en-US": "lightbulb",
+        "zh-TW": "灯",
+        "zh-CN": "灯"
+      },
+      "properties": [
+        {
+          "iid": 1,
+          "type": "urn:xiot-spec:property:on:0000000b:ouyang:demo:1",
+          "description": {
+            "en-US": "on",
+            "zh-TW": "开关",
+            "zh-CN": "开关"
+          },
+          "format": "bool",
+          "access": [
+            "read",
+            "write",
+            "notify"
+          ],
+          "default-value": false
+        },
+        {
+          "iid": 2,
+          "type": "urn:xiot-spec:property:name:00000020:ouyang:demo:2",
+          "description": {
+            "en-US": "Name",
+            "zh-TW": "名称",
+            "zh-CN": "名称"
+          },
+          "format": "string",
+          "access": [
+            "read",
+            "write",
+            "notify"
+          ],
+          "default-value": "开关"
+        }
+      ]
+    },
+    {
+      "iid": 14,
+      "type": "urn:xiot-spec:service:test:00000043:ouyang:demo:1",
+      "description": {
+        "en-US": "test",
+        "zh-CN": "test",
+        "zh-TW": "test"
+      },
+      "properties": [
+        {
+          "iid": 1,
+          "type": "urn:xiot-spec:property:red:00000037:ouyang:demo:1",
+          "description": {
+            "en-US": "red",
+            "zh-CN": "red",
+            "zh-TW": "red"
+          },
+          "format": "uint8",
+          "access": []
+        },
+        {
+          "iid": 2,
+          "type": "urn:xiot-spec:property:green:00000037:ouyang:demo:1",
+          "description": {
+            "en-US": "green",
+            "zh-CN": "green",
+            "zh-TW": "green"
+          },
+          "format": "uint8",
+          "access": []
+        },
+        {
+          "iid": 3,
+          "type": "urn:xiot-spec:property:blue:00000037:ouyang:demo:1",
+          "description": {
+            "en-US": "blue",
+            "zh-CN": "blue",
+            "zh-TW": "blue"
+          },
+          "format": "uint8",
+          "access": []
+        },
+        {
+          "iid": 4,
+          "type": "urn:xiot-spec:property:rgb:00000037:ouyang:demo:1",
+          "description": {
+            "en-US": "red",
+            "zh-CN": "green",
+            "zh-TW": "blue"
+          },
+          "format": "combination",
+          "access": ["read", "write", "notify"],
+          "members": [1, 2, 3]
+        },
+        {
+          "iid": 5,
+          "type": "urn:xiot-spec:property:start:00000037:ouyang:demo:1",
+          "description": {
+            "en-US": "start",
+            "zh-CN": "start",
+            "zh-TW": "start"
+          },
+          "format": "uint8",
+          "access": []
+        },
+        {
+          "iid": 6,
+          "type": "urn:xiot-spec:property:end:00000037:ouyang:demo:1",
+          "description": {
+            "en-US": "green",
+            "zh-CN": "green",
+            "zh-TW": "green"
+          },
+          "format": "uint8",
+          "access": []
+        },
+        {
+          "iid": 7,
+          "type": "urn:xiot-spec:property:time:00000037:ouyang:demo:1",
+          "description": {
+            "en-US": "red",
+            "zh-CN": "green",
+            "zh-TW": "blue"
+          },
+          "format": "combination",
+          "access": ["read", "write", "notify"],
+          "members": [5, 6]
+        },
+        {
+          "iid": 8,
+          "type": "urn:xiot-spec:property:hello:00000037:ouyang:demo:1",
+          "description": {
+            "en-US": "hello",
+            "zh-CN": "hello",
+            "zh-TW": "hello"
+          },
+          "format": "combination",
+          "access": ["read", "write", "notify"],
+          "members": [4, 7]
+        }
+      ],
+      "actions": [
+        {
+          "iid": 1,
+          "type": "urn:xiot-spec:action:set-rgb:00000023:ouyang:demo:1",
+          "description": {
+            "en-US": "get RGB",
+            "zh-TW": "读取颜色",
+            "zh-CN": "读取颜色"
+          },
+          "in": [
+            {
+              "piid": 4,
+              "repeat": [1, 10]
+            }
+          ]
+        },
+        {
+          "iid": 2,
+          "type": "urn:xiot-spec:action:get-rgb:00000023:ouyang:demo:1",
+          "description": {
+            "en-US": "get RGB",
+            "zh-TW": "读取颜色",
+            "zh-CN": "读取颜色"
+          },
+          "out": [
+            {
+              "piid": 4,
+              "repeat": [1, 10]
+            }
+          ]
+        },
+        {
+          "iid": 3,
+          "type": "urn:xiot-spec:action:get-hello:00000023:ouyang:demo:1",
+          "description": {
+            "en-US": "get Hello",
+            "zh-TW": "get Hello",
+            "zh-CN": "get Hello"
+          },
+          "out": [
+            {
+              "piid": 7,
+              "repeat": [0, 5]
+            }
+          ]
+        }
+      ],
+      "events": [
+        {
+          "iid": 1,
+          "type": "urn:xiot-spec:event:rgb-changed:00000023:ouyang:demo:1",
+          "description": {
+            "en-US": "rgb changed",
+            "zh-TW": "颜色改变",
+            "zh-CN": "颜色改变"
+          },
+          "arguments": [
+            {
+              "piid": 4,
+              "repeat": [0, 5]
+            }
+          ]
+        },
+        {
+          "iid": 2,
+          "type": "urn:xiot-spec:event:hello-changed:00000023:ouyang:demo:1",
+          "description": {
+            "en-US": "hello changed",
+            "zh-TW": "hello changed",
+            "zh-CN": "hello changed"
+          },
+          "arguments": [
+            {
+              "piid": 7,
+              "repeat": [0, 5]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

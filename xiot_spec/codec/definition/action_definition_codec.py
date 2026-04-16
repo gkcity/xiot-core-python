@@ -20,6 +20,7 @@ class ActionDefinitionCodec:
         desc = DescriptionCodec.decode(obj.get(Spec.DESCRIPTION))
 
         in_array = obj.get(Spec.IN, [])
+
         in_args = ArgumentDefinitionCodec.decode(JsonArray(in_array))
 
         out_array = obj.get(Spec.OUT, [])

@@ -19,8 +19,8 @@ class ArgumentDefinitionCodec:
                 arg = ArgumentDefinitionCodec.decode_str(obj)
                 if arg:
                     list_.append(arg)
-            elif isinstance(obj, JsonObject):
-                arg = ArgumentDefinitionCodec.decode_dict(obj)
+            elif isinstance(obj, dict):
+                arg = ArgumentDefinitionCodec.decode_dict(JsonObject(obj))
                 if arg:
                     list_.append(arg)
         return list_

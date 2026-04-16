@@ -1,0 +1,141 @@
+{
+  "type": "urn:xiot-spec:device:gateway:00000004:test:array:1",
+  "description": {
+    "en-US": "Homepad",
+    "zh-TW": "中控屏",
+    "zh-CN": "中控屏"
+  },
+  "services": [
+    {
+      "iid": 1,
+      "type": "urn:xiot-spec:service:device-information:00000002:test:array:1",
+      "description": {
+        "en-US": "Device Information",
+        "zh-TW": "設備信息",
+        "zh-CN": "设备信息"
+      },
+      "properties": [
+        {
+          "iid": 1,
+          "type": "urn:xiot-spec:property:firmware-revision:00000006:test:array:1",
+          "description": {
+            "en-US": "Firmware Revision",
+            "zh-TW": "固件版本",
+            "zh-CN": "固件版本"
+          },
+          "format": "string",
+          "access": [
+            "read"
+          ]
+        },
+        {
+          "iid": 2,
+          "type": "urn:xiot-spec:property:manufacturer:00000003:test:array:1",
+          "description": {
+            "en-US": "Manufacturer",
+            "zh-TW": "製造商",
+            "zh-CN": "制造商"
+          },
+          "format": "string",
+          "access": [
+            "read"
+          ]
+        },
+        {
+          "iid": 3,
+          "type": "urn:xiot-spec:property:model:00000004:test:array:1",
+          "description": {
+            "en-US": "Model",
+            "zh-TW": "型號",
+            "zh-CN": "型号"
+          },
+          "format": "string",
+          "access": [
+            "read"
+          ]
+        },
+        {
+          "iid": 4,
+          "type": "urn:xiot-spec:property:serial-number:00000005:test:array:1",
+          "description": {
+            "en-US": "Serial Number",
+            "zh-TW": "序列號",
+            "zh-CN": "序列号"
+          },
+          "format": "string",
+          "access": [
+            "read"
+          ]
+        },
+        {
+          "iid": 5,
+          "type": "urn:xiot-spec:property:software-revision:0000001f:test:array:1",
+          "description": {
+            "en-US": "Software revision",
+            "zh-TW": "軟件版本",
+            "zh-CN": "软件版本"
+          },
+          "format": "string",
+          "access": [
+            "read"
+          ]
+        },
+        {
+          "iid": 6,
+          "type": "urn:xiot-spec:property:name:00000020:test:array:1",
+          "description": {
+            "en-US": "Name",
+            "zh-TW": "名称",
+            "zh-CN": "名称"
+          },
+          "format": "string",
+          "access": [
+            "read",
+            "write",
+            "notify"
+          ]
+        }
+      ]
+    },
+    {
+      "iid": 2,
+      "type": "urn:xiot-spec:service:test:00000020:test:array:1",
+      "description": {
+        "en-US": "TEST",
+        "zh-TW": "TEST",
+        "zh-CN": "TEST"
+      },
+      "properties": [
+        {
+          "iid": 1,
+          "type": "urn:xiot-spec:property:device-id:00000036:test:array:1",
+          "description": {
+            "en-US": "did",
+            "zh-TW": "设备ID",
+            "zh-CN": "设备ID"
+          },
+          "format": "string",
+          "access": []
+        },
+        {
+          "iid": 2,
+          "type": "urn:xiot-spec:property:devices:00000037:test:array:1",
+          "description": {
+            "en-US": "devices",
+            "zh-TW": "设备列表",
+            "zh-CN": "设备列表"
+          },
+          "format": "array",
+          "access": [],
+          "element": {
+            "iid": 1,
+            "size": [
+              10,
+              20
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

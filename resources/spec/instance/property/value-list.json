@@ -1,0 +1,37 @@
+{
+  "unit": "",
+  "access": [
+    "read",
+    "write"
+  ],
+  "iid": 3,
+  "format": "uint8",
+  "description": {
+    "zh-TW": "協議",
+    "zh-CN": "协议",
+    "en-US": "protocol"
+  },
+  "type": "urn:xiot-spec:property:server-protocol:00000008:fgr1622419059689508864:edge:1",
+  "value-list": [
+    {
+      "description": "xcp over websocket",
+      "value": 1
+    },
+    {
+      "description": "xcp over tcp",
+      "value": 2
+    },
+    {
+      "description": "xcp over http",
+      "value": 3
+    },
+    {
+      "description": "xcp over http and websocket",
+      "value": 4
+    },
+    {
+      "description": "unknown",
+      "value": 0
+    }
+  ]
+}

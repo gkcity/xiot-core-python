@@ -1,0 +1,6 @@
+{
+    "type": "urn:homekit-spec:property:logs:0000001f",
+    "description": "Logs",
+    "format": "hex",
+    "access": ["read", "notify"]
+}

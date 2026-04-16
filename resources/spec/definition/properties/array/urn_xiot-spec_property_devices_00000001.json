@@ -1,0 +1,10 @@
+{
+  "type" : "urn:xiot-spec:property:devices:0000000a",
+  "description" : "Device Array",
+  "format" : "array",
+  "access" : [],
+  "element": {
+    "type": "urn:xiot-spec:property:device:00000001",
+    "size": [1, 100]
+  }
+}

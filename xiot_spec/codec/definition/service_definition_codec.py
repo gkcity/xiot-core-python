@@ -13,24 +13,24 @@ from xiot_spec.typedef.definition.urn.service_type import ServiceType
 class ServiceDefinitionCodec:
     @staticmethod
     def decode_list(array: list[dict]) -> list[ServiceDefinition]:
-        return [ServiceDefinitionCodec.decode(JsonObject(obj)) for obj in array]
+        return [ServiceDefinitionCodec.decode(obj) for obj in array]
 
     @staticmethod
     def encode_list(list_: list[ServiceDefinition]) -> list[dict]:
         return [ServiceDefinitionCodec.encode(def_) for def_ in list_]
 
     @staticmethod
-    def decode(obj: JsonObject) -> ServiceDefinition:
-        type_str = obj.opt_string(Spec.TYPE, "")
+    def decode(obj: dict) -> ServiceDefinition:
+        type_str = obj.get(Spec.TYPE, "")
         type_ = ServiceType.parse(type_str)
         desc = DescriptionCodec.decode(obj.get(Spec.DESCRIPTION))
 
-        req_props = PropertyTypeCodec.decode(obj.get_json_array(Spec.REQUIRED_PROPERTIES))
-        opt_props = PropertyTypeCodec.decode(obj.get_json_array(Spec.OPTIONAL_PROPERTIES))
-        req_actions = ActionTypeCodec.decode(obj.get_json_array(Spec.REQUIRED_ACTIONS))
-        opt_actions = ActionTypeCodec.decode(obj.get_json_array(Spec.OPTIONAL_ACTIONS))
-        req_events = EventTypeCodec.decode(obj.get_json_array(Spec.REQUIRED_EVENTS))
-        opt_events = EventTypeCodec.decode(obj.get_json_array(Spec.OPTIONAL_EVENTS))
+        req_props = PropertyTypeCodec.decode(obj.get(Spec.REQUIRED_PROPERTIES))
+        opt_props = PropertyTypeCodec.decode(obj.get(Spec.OPTIONAL_PROPERTIES))
+        req_actions = ActionTypeCodec.decode(obj.get(Spec.REQUIRED_ACTIONS))
+        opt_actions = ActionTypeCodec.decode(obj.get(Spec.OPTIONAL_ACTIONS))
+        req_events = EventTypeCodec.decode(obj.get(Spec.REQUIRED_EVENTS))
+        opt_events = EventTypeCodec.decode(obj.get(Spec.OPTIONAL_EVENTS))
 
         return ServiceDefinition(
             type_, desc, req_props, opt_props,

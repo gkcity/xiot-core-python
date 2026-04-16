@@ -1,0 +1,20 @@
+{
+  "unit": "",
+  "access": [
+    "read",
+    "write"
+  ],
+  "iid": 11,
+  "format": "uint8",
+  "description": {
+    "en-US": "Number Length",
+    "zh-TW": "編號長度",
+    "zh-CN": "编号长度"
+  },
+  "value-range": [
+    0,
+    5,
+    1
+  ],
+  "type": "urn:xiot-spec:property:number-length:00000013:fgr1622419059689508864:edge:1"
+}

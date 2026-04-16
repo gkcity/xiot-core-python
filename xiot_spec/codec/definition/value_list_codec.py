@@ -21,13 +21,13 @@ class ValueListCodec(Generic[T]):
     def _decode(fmt: DataFormat, obj: dict) -> ValueDefinition[T]:
         value = obj.get(Spec.VALUE)
         description = DescriptionCodec.decode(obj.get(Spec.DESCRIPTION))
-        return ValueDefinition(fmt, value, description)
+        return ValueDefinition(None, description, fmt, value)
 
     @staticmethod
     def encode(list_: ValueList[T]) -> list[dict]:
         return [
             {
-                Spec.VALUE: val.value.raw_value(),
+                Spec.VALUE: val.get_value(),
                 Spec.DESCRIPTION: DescriptionCodec.encode(val.description)
             }
             for val in list_.values

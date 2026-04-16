@@ -1,0 +1,16 @@
+{
+  "unit": "",
+  "access": [
+    "read",
+    "write",
+    "notify"
+  ],
+  "iid": 1,
+  "format": "bool",
+  "description": {
+    "zh-TW": "開關",
+    "zh-CN": "开关",
+    "en-US": "on"
+  },
+  "type": "urn:xiot-spec:property:on:00000001:tuya:abt8332:1"
+}

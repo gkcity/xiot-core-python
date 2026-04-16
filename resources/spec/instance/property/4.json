@@ -1,0 +1,29 @@
+{
+  "unit": "",
+  "access": [
+    "read"
+  ],
+  "iid": 11,
+  "members": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    12,
+    13,
+    14
+  ],
+  "format": "combination",
+  "description": {
+    "en-US": "A device",
+    "zh-TW": "設備",
+    "zh-CN": "设备"
+  },
+  "type": "urn:xiot-spec:property:device:0000001e"
+}

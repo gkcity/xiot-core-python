@@ -1,0 +1,15 @@
+{
+  "iid": 2,
+  "type": "urn:xiot-spec:property:devices:00000001:aaa:bbb:1",
+  "access": [],
+  "format": "array",
+  "description": {
+    "zh-TW": "设备列表",
+    "zh-CN": "设备列表",
+    "en-US": "devices"
+  },
+  "element": {
+    "iid": 1,
+    "size": [100, 200]
+  }
+}

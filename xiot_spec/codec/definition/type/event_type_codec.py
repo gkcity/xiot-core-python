@@ -1,6 +1,5 @@
 from typing import Optional
 
-from xiot_spec.codec.java.json_array import JsonArray
 from xiot_spec.typedef.definition.urn.event_type import EventType
 
 
@@ -11,20 +10,18 @@ class EventTypeCodec:
         raise NotImplementedError("该类不允许实例化")
 
     @staticmethod
-    def decode(array: Optional[JsonArray]) -> Optional[list[EventType]]:
+    def decode(array: Optional[list[str]]) -> Optional[list[EventType]]:
         if array is None:
             return None
-        # 严格对齐Java stream -> filter -> map -> collect 逻辑
         result = []
-        for x in array.stream():
+        for x in array:
             if isinstance(x, str):
                 result.append(EventType.parse(x))
         return result
 
     @staticmethod
-    def encode(list_: Optional[list[EventType]]) -> Optional[JsonArray]:
+    def encode(list_: Optional[list[EventType]]) -> Optional[list[str]]:
         if list_ is None:
             return None
-        # 模拟Java: new JsonArray(list.stream().map(Urn::toString).collect(Collectors.tolist()))
         str_list = [str(urn) for urn in list_]
-        return JsonArray(str_list)
+        return str_list

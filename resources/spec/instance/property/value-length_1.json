@@ -1,0 +1,16 @@
+{
+  "unit": "",
+  "access": [
+    "read",
+    "write"
+  ],
+  "iid": 1,
+  "format": "string",
+  "description": {
+    "zh-TW": "名稱",
+    "zh-CN": "名称",
+    "en-US": "name"
+  },
+  "value-length": [0, 5],
+  "type": "urn:xiot-spec:property:name:00000001:tuya:abt8332:1"
+}

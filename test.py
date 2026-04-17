@@ -12,17 +12,17 @@ def run_all_tests() -> None:
     """批量运行所有 codec 单元测试"""
     # 测试模块路径
     test_modules = [
-        "tests.codec.definition.test_action_definition_codec",
-        "tests.codec.definition.test_event_definition_codec",
-        "tests.codec.definition.test_property_definition_codec",
-        "tests.codec.definition.test_service_definition_codec",
-        "tests.codec.instance.test_device_instance_codec",
-        "tests.codec.operation.test_action_operation_codec",
-        "tests.codec.operation.test_event_operation_codec",
-        "tests.codec.operation.test_property_operation_codec",
-        "tests.codec.shadow.test_shadow_codec",
-        "tests.codec.summary.test_summary_codec",
-        "tests.typedef.definition.type.test_action_type"
+        "tests.spec.codec.definition.test_action_definition_codec",
+        "tests.spec.codec.definition.test_event_definition_codec",
+        "tests.spec.codec.definition.test_property_definition_codec",
+        "tests.spec.codec.definition.test_service_definition_codec",
+        "tests.spec.codec.instance.test_device_instance_codec",
+        "tests.spec.codec.operation.test_action_operation_codec",
+        "tests.spec.codec.operation.test_event_operation_codec",
+        "tests.spec.codec.operation.test_property_operation_codec",
+        "tests.spec.codec.shadow.test_shadow_codec",
+        "tests.spec.codec.summary.test_summary_codec",
+        "tests.spec.typedef.definition.type.test_action_type"
     ]
 
     # 加载所有测试

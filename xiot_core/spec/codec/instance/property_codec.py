@@ -32,7 +32,7 @@ class PropertyCodec(Generic[T]):
         p = Property[T]()
 
         p.iid = obj.get(Spec.IID, 0)
-        p.property_type = PropertyType.parse(obj.get(Spec.TYPE, ""))
+        p.type = PropertyType.parse(obj.get(Spec.TYPE, ""))
         p.description = DescriptionCodec.decode(obj.get(Spec.DESCRIPTION, {}))
         p.format = DataFormat.from_str(obj.get(Spec.FORMAT, ""))
         p.access = AccessCodec.decode(obj.get(Spec.ACCESS, []))
@@ -47,13 +47,13 @@ class PropertyCodec(Generic[T]):
                 raise ValueError("value-list & value-range both exist!")
 
             if has_value_list:
-                p.constraint_value = ValueListCodec.decode(p.format, obj.get(Spec.VALUE_LIST, []))
+                p.constraint = ValueListCodec.decode(p.format, obj.get(Spec.VALUE_LIST, []))
 
             if has_value_range:
-                p.constraint_value = ValueRangeCodec.decode(p.format, obj.get(Spec.VALUE_RANGE, []))
+                p.constraint = ValueRangeCodec.decode(p.format, obj.get(Spec.VALUE_RANGE, []))
 
             if Spec.VALUE_LENGTH in obj:
-                p.constraint_value = ValueLengthCodec.decode(obj.get(Spec.VALUE_LENGTH, []))
+                p.constraint = ValueLengthCodec.decode(obj.get(Spec.VALUE_LENGTH, []))
 
         p.initialize_value()
         p.default_value = obj.get(Spec.DEFAULT_VALUE)
@@ -64,7 +64,7 @@ class PropertyCodec(Generic[T]):
     def encode(p: Property[T]) -> Dict[str, Any]:
         o: Dict[str, Any] = {
             Spec.IID: p.iid,
-            Spec.TYPE: str(p.property_type),
+            Spec.TYPE: str(p.type),
             Spec.FORMAT: str(p.format),
             Spec.ACCESS: p.access.to_list()
         }
@@ -72,7 +72,7 @@ class PropertyCodec(Generic[T]):
         if p.description and len(p.description) > 0:
             o[Spec.DESCRIPTION] = DescriptionCodec.encode(p.description)
 
-        constraint_val = p.constraint_value
+        constraint_val = p.constraint
         if constraint_val:
             if isinstance(constraint_val, ValueList):
                 o[Spec.VALUE_LIST] = ValueListCodec.encode(constraint_val)

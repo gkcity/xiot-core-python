@@ -21,13 +21,12 @@ class Event:
     def iid(self, instance_id: int) -> None:
         self._iid = instance_id
 
-    # type 属性（避免和python关键字冲突，后缀加_）
     @property
-    def event_type(self) -> Optional[EventType]:
+    def type(self) -> Optional[EventType]:
         return self._type
 
-    @event_type.setter
-    def event_type(self, type_: EventType) -> None:
+    @type.setter
+    def type(self, type_: EventType) -> None:
         self._type = type_
 
     # description 属性

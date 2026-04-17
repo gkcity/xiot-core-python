@@ -4,10 +4,12 @@ import pathlib
 import unittest
 
 from xiot_core.spec.codec.instance.device_instance_codec import DeviceInstanceCodec
+from xiot_core.support.codec.controller.device_controller_codec import DeviceControllerCodec
 
-class TestDeviceInstanceCodec(unittest.TestCase):
+
+class TestDeviceControllerCodec(unittest.TestCase):
     def test_codec(self) -> None:
-        """Test DeviceInstanceCodec"""
+        """Test DeviceControllerCodec"""
         self._decode("/instance/device/miot")
         self._decode("/instance/device/xiot")
         self._decode("/instance/device/homekit")
@@ -42,8 +44,8 @@ class TestDeviceInstanceCodec(unittest.TestCase):
             original_json = json.load(f)
 
         # 编解码测试
-        definition = DeviceInstanceCodec.decode(original_json)
-        encoded_json = DeviceInstanceCodec.encode(definition)
+        device = DeviceControllerCodec.decode(original_json)
+        encoded_json = DeviceInstanceCodec.encode(device)
 
         # print("old => ", original_json)
         # print("new => ", encoded_json)

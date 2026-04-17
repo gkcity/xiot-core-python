@@ -34,7 +34,7 @@ class ActionCodec:
     def encode(action: Action) -> Dict[str, Any]:
         o: Dict[str, Any] = {
             Spec.IID: action.iid,
-            Spec.TYPE: str(action.action_type)
+            Spec.TYPE: str(action.type)
         }
 
         if len(action.description) > 0:

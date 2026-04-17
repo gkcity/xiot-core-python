@@ -6,6 +6,9 @@ from ..definition.property.constraint_value import ConstraintValue
 from ..definition.property.data.data_format import DataFormat
 from ..definition.property.data.data_value import DataValue
 from ..definition.urn.property_type import PropertyType
+from ..operation.property_operation import PropertyOperation
+from ..status.abstract_status import IotError
+from ..status.status import Status
 
 T = TypeVar('T')
 
@@ -17,8 +20,9 @@ class Property(Generic[T]):
         description: Optional[Dict[str, str]] = None,
         access: Access = Access(),
         fmt: DataFormat = DataFormat.INT8,
-        constraint: Optional[Any] = None,
-        unit: Optional[str] = None
+        constraint: Optional[ConstraintValue[T]] = None,
+        unit: Optional[str] = None,
+        other: Optional["Property"] = None,
     ):
         self._iid = iid
         self._type = property_type
@@ -29,7 +33,16 @@ class Property(Generic[T]):
         self._unit = unit
         self._members: list[int] = []
         self._value = PropertyValue.create(fmt)
-        self._constraint_value: Optional[ConstraintValue[T]] = None
+        if other is not None:
+            self._iid = other._iid
+            self._type = other._type
+            self._description = other._description
+            self._access = other._access
+            self._format = other._format
+            self._constraint = other._constraint
+            self._unit = other._unit
+            self._members = other._members
+            self._value = other._value
 
     # ------------------------------
     # Getter / Setter
@@ -43,11 +56,11 @@ class Property(Generic[T]):
         self._iid = value
 
     @property
-    def property_type(self) -> Optional[PropertyType]:
+    def type(self) -> Optional[PropertyType]:
         return self._type
 
-    @property_type.setter
-    def property_type(self, value: PropertyType) -> None:
+    @type.setter
+    def type(self, value: PropertyType) -> None:
         self._type = value
 
     @property
@@ -104,16 +117,12 @@ class Property(Generic[T]):
         return self._value.value
 
     @property
-    def constraint_value(self) -> Optional[ConstraintValue[T]]:
-        return self._constraint_value
+    def constraint(self) -> Optional[ConstraintValue[T]]:
+        return self._constraint
 
-    @constraint_value.setter
-    def constraint_value(self, value: Optional[ConstraintValue[T]]) -> None:
-        self._constraint_value = value
-
-    @constraint_value.setter
-    def constraint_value(self, value: Optional[ConstraintValue[T]]) -> None:
-        self._constraint_value = value
+    @constraint.setter
+    def constraint(self, value: Optional[ConstraintValue[T]]) -> None:
+        self._constraint = value
 
     # ------------------------------
     # 核心业务方法
@@ -136,9 +145,9 @@ class Property(Generic[T]):
             )
             return False
 
-        if self._constraint_value is None:
+        if self._constraint is None:
             return True
-        return self._constraint_value.validate(value)
+        return self._constraint.validate(value)
 
     @property
     def default_value(self) -> Optional[DataValue[T]]:
@@ -165,15 +174,15 @@ class Property(Generic[T]):
         data_value = self._format.create_value(value)
         return self.set_data_value(data_value, write=True)
 
-    # def set_value_for_operation(self, operation: PropertyOperation) -> None:
-    #     """为操作设置值"""
-    #     try:
-    #         data_value = self._format.create_value(operation.value())
-    #         self.set_data_value_with_exception(data_value, write=True)
-    #         operation.status(Status.COMPLETED)
-    #     except IotError as e:
-    #         operation.status(e.status)
-    #         operation.description(e.description)
+    def set_value_for_operation(self, operation: PropertyOperation) -> None:
+        """为操作设置值"""
+        try:
+            data_value = self._format.create_value(operation.value())
+            self.set_data_value_with_exception(data_value, write=True)
+            operation.status = Status.COMPLETED
+        except IotError as e:
+            operation.status = e.status
+            operation.description = e.description
 
     def set_data_value(self, new_value: Optional[DataValue[T]], write: bool) -> bool:
         """设置数据值（无异常）"""
@@ -189,17 +198,16 @@ class Property(Generic[T]):
 
         return True
 
-    # def set_data_value_with_exception(self, new_value: Optional[DataValue[T]], write: bool) -> None:
-    #     """设置数据值（抛异常）"""
-    #     if new_value is None:
-    #         raise IotError(Status.PROPERTY_VALUE_ERROR, "property value is null")
-    #
-    #     if not self.validate(new_value):
-    #         raise IotError(Status.PROPERTY_VALUE_INVALID, f"property value invalid: {new_value.raw_value}")
-    #
-    #     if write:
-    #         with self._lock:
-    #             self._value.update(new_value)
+    def set_data_value_with_exception(self, new_value: Optional[DataValue[T]], write: bool) -> None:
+        """设置数据值（抛异常）"""
+        if new_value is None:
+            raise IotError(Status.PROPERTY_VALUE_ERROR, "property value is null")
+
+        if not self.validate(new_value):
+            raise IotError(Status.PROPERTY_VALUE_INVALID, f"property value invalid: {new_value.raw_value}")
+
+        if write:
+            self._value.update(new_value)
 
     def __lt__(self, other: 'Property[T]') -> bool:
         """实现比较逻辑（替代compareTo）"""

@@ -26,11 +26,11 @@ class Service:
 
     # type 属性
     @property
-    def service_type(self) -> Optional[ServiceType]:
+    def type(self) -> Optional[ServiceType]:
         return self._type
 
-    @service_type.setter
-    def service_type(self, type_: ServiceType) -> None:
+    @type.setter
+    def type(self, type_: ServiceType) -> None:
         self._type = type_
 
     # description 属性
@@ -81,5 +81,5 @@ class Service:
     def from_type_str(cls, type_str: str) -> Service:
         """对应Java的 Service(String type) 构造方法"""
         instance = cls()
-        instance.service_type = ServiceType.parse(type_str)
+        instance.type = ServiceType.parse(type_str)
         return instance

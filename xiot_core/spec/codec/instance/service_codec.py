@@ -39,7 +39,7 @@ class ServiceCodec:
     def encode(service: Service) -> Dict[str, Any]:
         o: Dict[str, Any] = {
             Spec.IID: service.iid,
-            Spec.TYPE: str(service.service_type)
+            Spec.TYPE: str(service.type)
         }
 
         if len(service.description) > 0:
@@ -47,20 +47,20 @@ class ServiceCodec:
 
         if len(service.properties) > 0:
             properties = []
-            for prop in service.properties.values():
-                properties.append(PropertyCodec.encode(prop))
+            for p in service.properties.values():
+                properties.append(PropertyCodec.encode(p))
             o[Spec.PROPERTIES] = properties
 
         if len(service.actions) > 0:
             actions = []
-            for action in service.actions.values():
-                actions.append(ActionCodec.encode(action))
+            for a in service.actions.values():
+                actions.append(ActionCodec.encode(a))
             o[Spec.ACTIONS] = actions
 
         if len(service.events) > 0:
             events = []
-            for event in service.events.values():
-                events.append(EventCodec.encode(event))
+            for e in service.events.values():
+                events.append(EventCodec.encode(e))
             o[Spec.EVENTS] = events
 
         return o

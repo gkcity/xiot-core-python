@@ -4,7 +4,7 @@ from xiot_core.spec.typedef.status.status import Status
 
 
 # 占位：IotError（原代码未提供完整定义，保留接口）
-class IotError:
+class IotError(Exception):
     def __init__(self, status: int, description: str):
         self.status = status
         self.description = description

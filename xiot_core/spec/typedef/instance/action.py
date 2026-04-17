@@ -24,11 +24,11 @@ class Action:
 
     # type 属性
     @property
-    def action_type(self) -> Optional[ActionType]:
+    def type(self) -> Optional[ActionType]:
         return self._type
 
-    @action_type.setter
-    def action_type(self, type_: ActionType) -> None:
+    @type.setter
+    def type(self, type_: ActionType) -> None:
         self._type = type_
 
     # description 属性

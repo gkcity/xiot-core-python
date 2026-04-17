@@ -22,7 +22,7 @@ class DeviceInstanceCodec:
     @staticmethod
     def encode(device: DeviceInstance) -> Dict[str, Any]:
         o: Dict[str, Any] = {
-            Spec.TYPE: str(device.device_type)
+            Spec.TYPE: str(device.type)
         }
 
         if len(device.description) > 0:

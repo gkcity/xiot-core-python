@@ -33,7 +33,7 @@ class EventCodec:
     def encode(event: Event) -> Dict[str, Any]:
         o: Dict[str, Any] = {
             Spec.IID: event.iid,
-            Spec.TYPE: str(event.event_type)
+            Spec.TYPE: str(event.type)
         }
 
         if len(event.description) > 0:

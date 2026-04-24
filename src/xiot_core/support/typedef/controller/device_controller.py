@@ -23,10 +23,14 @@ class DeviceController(Generic[T], DeviceInstance):
         self._additional: Optional[T] = None
         self._summary: Optional[Summary] = None
 
-    def did(self, did: str = None) -> Optional[str]:
+    @property
+    def did(self) -> str:
+        return self._did
+
+    @did.setter
+    def did(self, did: str = None) -> None:
         if did is not None:
             self._did = did
-        return self._did
 
     @property
     def summary(self) -> Optional[Summary]:

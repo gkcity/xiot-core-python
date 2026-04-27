@@ -21,12 +21,7 @@ class ActionInvokerWrapper:
         operation = ActionOperation(did = self._did, siid = self._siid, aiid = iid)
         operation.arguments_in = list(arguments.values())
         operation.context = self._context
-
-        try:
-            result = await self._operator(operation)
-            if result.is_not_error:
-                return result.arguments_out
-            else:
-                raise Exception(f"Property set failed: {result.status}, {result.description}")
-        except Exception as e:
-            raise Exception(f"Action invoke error: {e}")
+        result = await self._operator(operation)
+        if result.is_error:
+            raise ValueError(f"Invoke Action failed: {result.status}, {result.description}")
+        return result.arguments_out
